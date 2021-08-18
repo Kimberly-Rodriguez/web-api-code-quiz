@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0px;
+
+  }
+
+  #h-scores {
+      text-decoration: none;
+      color: blueviolet;
+      font-weight: bolder;
+  }
+
+  #timer {
+      float:right;
+      font-weight: bolder;
+  }
+
+  .main-container{
+      max-width:550px;
+      padding:0;
+      position:relative;
+  }
+
+header {
+    display: flex;
+    background-color: blueviolet;
+    height: 10vh;
+    padding: 10px 20px 10px 0px;
+  }
+  
+  section .title {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: #9fbbe8;
+    width: 40%;
+    height: 100%;
+    padding-right: 1%;
+  }
+  
+  header .title h3 {
+    font-size: 2em;
+    margin-left: auto;
+    color: white;
+  }
+  
+  header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    width: 40%;
+    margin-left: auto;
+  }
+  
+  header nav a {
+    color: #9fbbe8;
+    margin: 5px;
+  }
+
+
+  body {
+    background-color: #eee;
+    padding: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    width: 40em;
+    
+    /* border: 30px; */
+};
+
+button.answer {
+    cursor: pointer
+}
+
+button.answer input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+button.answer span {
+    padding: 4px 0px;
+    display: inline-block;
+    color: blueviolet;
+    width: 100px;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 7px;
+    text-transform: uppercase
+}
+
+button.answer input:checked+span {
+    border-color: 1px solid blueviolet;
+    background-color: blue;
+    color: #fff
+}
+
+#submit  {
+    border-color: 1px solid blueviolet;
+    background-color: blueviolet;
+    color: #fff
+}
+
+#start, .vertical-center #yes, .vertical-center #no, #return-btn, #clear
+{ 
+    background-color: blueviolet;
+    color: #fff;
+}
+
+
+.ans {
+    margin-left: 36px !important
+}
+
+.btn:focus {
+    outline: 0 !important;
+    box-shadow: none !important
+}
+
+.btn:active {
+    outline: 0 !important;
+    box-shadow: none !important
+}
