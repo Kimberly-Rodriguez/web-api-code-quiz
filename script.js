@@ -17,7 +17,7 @@ var btnReturn= document.querySelector("#return-btn");
 var btnClear = document.querySelector("#clear");
 var redo = document.querySelector("#reenter");
 var highscores = document.querySelector("#highscores");
-// var ulEl = document.querySelector("ul");
+var ulEl = document.querySelector("ul");
 
 // variable for user section on 
 var openSection = 0;
@@ -156,7 +156,8 @@ function setTimer() {
         clearInverval(timer);
  // show out of time section card
     sendMessage();
-    }}, 1000);
+    }
+}, 1000);
 }
 
 // show out of time note
@@ -190,6 +191,56 @@ btnNo.addEventListener("click", function(event){
 
 
    });
+}
+
+// show the message "correct or wrong" show
+ 
+     function setRightOrWrongTime() {
+         var time = setInterval(function () {
+             var second = 1;
+             second--;
+
+        if (second === 0){
+            clearInterval(timer);
+            reviewDiv.classList.remove("on");
+            reviewDiv.classList.add("off"); 
+        }
+         }, 1000);
+     }
+
+
+// higher user array loop
+
+fuction renderUser(){
+
+//clearing the elements for clear results each time
+ ulEl.innerHTML = "";
+
+ //Showing a new value per highscore
+ for (var i = 0; i < theUser.length; i++) {
+// creating a new object that pulls from array
+     var user = theUser[i];
+
+// place the text content of the list element to the user's info
+
+var in = document.createElement("in");
+ 
+in.textContent = theUser.userId + "." + theUser.initials + 
+"-" + theUser.score;
+
+
+// add the list element to the unordered list
+
+ulEl.appendChild(in);
+
+ }
+}
+
+
+// store users in local storage
+
+function useStorage() {
+    localStorage.setItem("theUser", JSON.stringify(theUser));
 }
 
 
