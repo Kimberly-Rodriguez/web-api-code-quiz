@@ -145,6 +145,55 @@ if(timeLeft > 10) {
 }
 
 
+// timer for quiz
+
+function setTimer() {
+    timer = setInterval(function(){
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+    
+    If (timeLeft === 0) {
+        clearInverval(timer);
+ // show out of time section card
+    sendMessage();
+    }}, 1000);
+}
+
+// show out of time note
+
+funtion sendMessage() {
+    cards[openSection].classList.revove("active");
+    outTime.classList.remove("off");
+    outTime.classList.add("on");
+
+// if user selects yes, return to start page
+btnYes.addEventListener("click", function(event){
+    event.preventDefault();
+
+
+    upSection(0);
+    outTime.classList.remove("on");
+    outTime.classList.add("off");
+    timeLeft = questions.length * 15;
+
+
+});
+
+// if user selects no, show take care note
+btnNo.addEventListener("click", function(event){
+    event.preventDefault();
+
+    seeYaMessage.classList.remove("off");
+    seeYaMessage.classList.add("on");
+    outTime.classList.remove("on");
+    outTime.classList.add("off");
+
+
+   });
+}
+
+
+
 
 
 
