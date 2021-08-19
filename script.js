@@ -80,10 +80,10 @@ var questions = [
     }
 ]
 
-// set the timer
+// set timer
 
 var timerEl = document.querySelector("#time-available");
-var timeLeft = questions.length * 12;
+var timeLeft = questions.length * 15;
 var timer;
 
 // Key Functions
@@ -107,13 +107,43 @@ if (openSection === 1) {
 
 // All done section
 
-if (openSection === 5) {
+if (openSection === 6) {
     score.textContent = timeLeft;
     // stop the timer
     clearInterval(timer);
 }
-
 }
+
+// verification of answers
+function verifiAnswer(event) {
+    event.preventDefault()
+
+reviewDiv.classList.remove("off");
+reviewDiv.classList.add("on");
+
+// if correct show correct answer 
+
+if(event.target.textContent === 
+questions[openQuestion].answer) {
+rwEl.textContent = "Correct!";
+} // if wrong show "Wrong!"
+else {
+    rwEl.textContent = "Wrong!";
+
+// time reduction
+if(timeLeft > 10) {
+    timeLeft -=10;
+    timerEl.textContent = timeLeft;
+    }
+ }
+
+ openQuestion++;
+
+
+ // remove review Div
+ rwEl();
+}
+
 
 
 
