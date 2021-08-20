@@ -1,236 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Code Quiz Project</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coding Quiz Challenge</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Header Section -->
     <div class="header">
-        <a id="h-scores" href="#">View Highscores</a>
-        <div id="timer">Time: <span id="time-available">0</span></div>
+        <a id="highscores" href="#">VIEW HIGHSCORES</a>
+        <div id="time">TIME: <span id="time-left">0</span></div>
     </div>
-    <div class="main-container">
-        <!-- Introduction Section -->
+    <div class="container">
+        <!--Section 1-->
         <div class="card">
-            <h2 id="start-card-header">Coding Quiz Challenge</h2>
+            <h2 id="page-header">Coding Quiz Challenge</h2>
             <div>
-                <p id="instructions">
+                    <p id="instructions">
                     Let's test your coding knowledge!
-                    <br>
-                    <br>
+                     <br> 
+                     <br>
                     To win you will have to select as many correct answers within the time allocated.
-                    Yet, if you select the wrong answer your time will decline by 10 seconds reducing your overall time.
-                    <br>
-                    <br>
-                    Best of luck!
+                    Otherwise, your time will reduced by 10 seconds for every wrong answer. 
                 </p>
             </div>
 
             <div class="row">
-                <div class="col text-center">
-                    <button type="submit" id="start">Start</button>
+                <!-- <div class="col text-center"> -->
+                    <button type="submit" id="start">START</button>
                 </div>
             </div>
 
-            <!-- First Question Section -->
-            <section>
-                <div class="cards">
-                    <h2>Coding Quiz Challenge</h2> <span>(1 of 5)</span>
-                </div>
+           
         </div>
-        <div class="question-top">
-            <div class="center">
-                <h3 class="text-question">Question:</h3>
-                <h4 class="question-line"> A ______ allows users to move from one webpage to another.</h4>
-            </div>
-            <div class="option-div">
-                <button class="answer"> <input type="radio"> <span>browser</span>
-                </button>
-            </div>
-            <div class="option-div">
-                <button class="answer"> <input type="radio"> <span>html</span>
-                </button>
-            </div>
-            <div class="option-div">
-                <button class="answer"> <input type="radio"> <span>video</span>
-                </button>
-            </div>
-            <div class="option-div">
-                <button class="answer"> <input type="radio"> <span>hyperlink</span>
-                </button>
+
+        <!--Section 2: Q-01-->
+        <div class="card">
+            <h2 class="question-header">A ______ allows users to move from one webcard to another.</h2>
+            <div>
+                <button class="choice"> <input type="radio"> <span>browser</span></button>
+                <br>
+                <button class="choice"> <input type="radio"> <span>html</span></button>
+                <br>
+                <button class="choice"> <input type="radio"> <span>video</span></button>
+                <br>
+                <button class="choice"> <input type="radio"> <span>hyperlink</span></button>
             </div>
         </div>
-        <!-- Second Question Section -->
-        <div class="cards">
-            <h2>Coding Quiz Challenge</h2> <span>(2 of 5)</span>
+        
+        <!--Section 3: Q-02-->
+        <div class="card">
+            <h2 class="question-header">"HTML document can contain"</h2>
+            <div>
+                <button class="choice"><input type="radio"><span>attribute</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>tags</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>plain text</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>all of the above</span></button>
+            </div>
         </div>
-    </div>
-    <div class="question-top">
-        <div class="center">
-            <h3 class="text-question">Question:</h3>
-            <h4 class="question-line"> HTML document can contain </h4>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>attribute</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>tags</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>plain text</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>all of the above</span>
-            </button>
-        </div>
-    </div>
-    <!-- Third Question Section -->
-    <div class="cards">
-        <h2>Coding Quiz Challenge</h2> <span>(3 of 5)</span>
-    </div>
-    </div>
-    <div class="question-top">
-        <div class="center">
-            <h3 class="text-question">Question:</h3>
-            <h4 class="question-line"> HTML document is saved using _________ extension.</h4>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>.htl</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>.html</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>.hml</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>.htnl</span>
-            </button>
-        </div>
-    </div>
-    <!-- Fourth Question Section -->
-    <div class="cards">
-        <h2>Coding Quiz Challenge</h2> <span>(4 of 5)</span>
-    </div>
-    </div>
-    <div class="question-top">
-        <div class="center">
-            <h3 class="text-question">Question:</h3>
-            <h4 class="question-line"> Which of the following is not considered a JavaScript operator?</h4>
-        </div>
-        <div class="option-div">
-            <button class="answer"><input type="radio"> <span>new</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"><input type="radio"> <span>this</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>delete</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>typeof</span>
-            </button>
-        </div>
-    </div>
-    <!-- Fifth Question Section -->
-    <div class="cards">
-        <h2>Coding Quiz Challenge</h2> <span>(5 of 5)</span>
-    </div>
-    </div>
-    <div class="question-top">
-        <div class="center">
-            <h3 class="text-question">Question:</h3>
-            <h4 class="question-line"> Using _______ statement is how you test for a specific condition.</h4>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"> <span>select</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"><span>if</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"><span>switch</span>
-            </button>
-        </div>
-        <div class="option-div">
-            <button class="answer"> <input type="radio"><span>for</span></button>
-        </div>
-    </div>
-    </section>
+        
 
-    <!-- All done Section -->
-
-    <div class="cards">
-        <h2 id="all-done-title">You're done -- thank you for playing! </h2>
-        <div>
-            Chek out your final score <span id="score"></span>
-            <form>
-                <label class="initials-header">Please input your initials:</label>
-                <input type="text" id="initials">
-                <button type="submit" id="submit">Submit</button>
-            </form>
-            <p class="reminder" id="reenter">Please don't forget to enter your initials</p>
+        <!--Section 4: Q-03-->
+        <div class="card">
+            <h2 class="question-header">Which one of the following is the correct way for calling the JavaScript code?</h2>
+            <div>
+                <button class="choice"><input type="radio"><span>processor</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>event</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>rmi</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>function</span></button>
+            </div>
         </div>
-    </div>
+        
 
-    <!-- Highscore Display Section -->
+        <!--Section 5: Q-04-->
+        <div class="card">
+            <h2 class="question-header">Which of the following is not considered a JavaScript operator?</h2>
+            <div>
+                <button class="choice"><input type="radio"><span>new</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>this</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>delete</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>typeof</span></button>
+            </div>
+        </div>
+        
 
-    <div class="cards">
+        <!--Section 6: Q-05-->
+        <div class="card">
+            <h2 class="question-header">Using _______ statement is how you test for a specific condition.</h2>
+            <div>
+                <button class="choice"><input type="radio"><span>select</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>if</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>switch</span></button>
+                <br>
+                <button class="choice"><input type="radio"><span>for</span></button>
+            </div>
+        </div>
+        
 
-        <h2 id="highscores">Highscore</h2>
-        <div>
-            <div class="option-submit-clear">
+        <!--Section 7: all-done-->
+        <div class="card">
+            <h2 id="done-header">Good job -- you are all done!</h2>
+            <div>
+                SCORE: <span id="score"></span>.
+                <form>
+                    <label for="intials">Enter initials:</label>
+                    <input type="text" id="initials">
+                    <button type="submit" id="submit">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+        
+
+        <!--Section 8: highscore-display -->
+        <div class="card">
+            <h2 id="highscores-header">Highscores:</h2>
+            <div>
                 <ul>
                 </ul>
-                <button type="submit" type="radio" id="return-btn">Return</button>
-                <button type="submit" type="radio" id="clear">Clear</button>
-
+                <button type="submit" id="back-btn">RETURN</button>
+                <button type="submit" id="clear-btn">CLEAR</button>
             </div>
-        </div>
-    </div>
+           
+
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-
-    <!-- Out of Time Section -->
-    <div class="cards">
-        <div class="out" id="out-of-time-section">
-            <h2 id="out-of-time-title"> Sorry, you are out of time. Would you like to start another game?</h2>
-            <div class="line">
-                <div class="vertical-center">
-                    <button type="radio" id="yes">Yes</button>
-                    <button type="radio" id="no">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Game Stops Section -->
-    <div class="cards">
-        <div class="out" id="see-ya">
-            <h2 id="see-you">Sorry to see you go -- take care!</h2>
-        </div>
-    </div>
-
-    <script src="script.js"> </script>
+    <script src="script.js"></script>
 </body>
-
-</html>
-</body>
-
 </html>

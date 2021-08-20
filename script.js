@@ -1,353 +1,312 @@
-// Elements from the DOM
+// Outlining the elements 
 var body = document.body;
-var container = document.querySelector(".main-container");
-var cards = document.querySelector(".cards");
+var container = document.querySelector(".container");
+var card = document.querySelectorAll(".card");
 var startBtn = document.querySelector("#start");
-var title = document.querySelector("#start-card-header");
-var answerChoice = document.querySelector(".answer");
-var outTime = document.querySelector("out-of-time-section");
-var btnYes = document.querySelector("#yes");
-var btnNo = document.querySelector("#no");
-var seeYaMessage = document.querySelector("#see-ya");
+var h2El = document.querySelector("#question-header");
+var choices = document.querySelectorAll(".choice");
+var message = document.querySelector("#out-of-time-page");
+var yesBtn = document.querySelector("#yes");
+var noBtn = document.querySelector("#no");
+var goodbye = document.querySelector("#goodbye");
 var score = document.querySelector("#score");
-var initialsInput = document.querySelector("#initials");
+var formInput = document.querySelector("#initials");
 var submitBtn = document.querySelector("#submit");
-var btnReturn = document.querySelector("#return-btn");
-var btnClear = document.querySelector("#clear");
-var redo = document.querySelector("#reenter");
-var highscores = document.querySelector("#highscores");
 var ulEl = document.querySelector("ul");
+var backBtn = document.querySelector("#back-btn");
+var clearBtn = document.querySelector("#clear-btn");
+var highscores = document.querySelector("#highscores");
 
-// variable for user section on 
-var openSection = 0;
+// users open section
+var displayedCard = 0;
 
-// variable for questions open and viewed by user
-var openQuestion = 0;
+// users open question
+var displayedQuestion = 0;
 
-// naming evaluating all variables
-var reviewDiv = document.createElement("div");
-reviewDiv.setAttribute("class", "evaluate off");
-
-//review
+// review variables 
+var evaluateDiv = document.createElement("div");
+evaluateDiv.setAttribute("class", "evaluate off");
 var hrEl = document.createElement("hr");
-var rwEl = document.createElement("p");
-rwEl.setAttribute("id", "right-or-wrong");
+var rightOrWrongEl = document.createElement("p");
+rightOrWrongEl.setAttribute("id", "right-or-wrong");
 container.appendChild(evaluateDiv);
 evaluateDiv.appendChild(hrEl);
-evaluateDiv.appendChild(rwEl);
+evaluateDiv.appendChild(rightOrWrongEl);
 
-// Array of users
-var theUser = [];
+// users array
+var users = [];
 
-// user index options
-var userId;
-
-// If no users, userId = 1 | if users available, userId = number of users + 1
+// index for user
+var userNum;
+// no users let it equal one
 if (JSON.parse(localStorage.getItem("users")) === null) {
-    userId = 1;
-} else {
-    userId = JSON.parse(localStorage.getItem("users")).length + 1;
+  userNum = 1;
+} // yet, if even one user register is noted up it by one
+else {
+  userNum = JSON.parse(localStorage.getItem("users")).length + 1;
 }
 
-// Questions array
-
+// array of questions
 var questions = [
-    {
-        question: "A ______ allows users to move from one webpage to another",
-        choices: ["browser", "html", "video", "hyperlink"],
-        answer: "hyperlink",
-    },
-    {
-        question: "HTML document can contain",
-        choices: ["attribute", "tags", "plain text", "all of the above"],
-        answer: "all of the above",
-    },
-    {
-        question: "HTML document is saved using _________ extension.",
-        choices: [".htl", ".html", ".hml", ".htnl"],
-        answer: "hyperlink",
-    },
-    {
-        question: "Which of the following is not considered a JavaScript operator?",
-        choices: ["new", "this", "delete", "typeof"],
-        answer: "this",
-    },
-    {
-        question: "Using _______ statement is how you test for a specific condition.",
-        choices: ["selec", "if", "switch", "for"],
-        answer: "if",
-    }
-]
+  {
+    title: "A ______ allows users to move from one webpage to another.",
+    choices: ["browser", "html", "video", "hyperlink"],
+    answer: "hyperlink",
+  },
+  {
+    title: "HTML document can contain",
+    choices: ["attribute", "tags", "plain text", "all of the above"],
+    answer: "all of the above",
+  },
+  {
+    title: "Which one of the following is the correct way for calling the JavaScript code?",
+    choices: ["processor", "event", "rmi", "function"],
+    answer: "function",
+  },
+  {
+    title: "Which of the following is not considered a JavaScript operator?",
+    choices: ["new", "this", "delete", "typeof"],
+    answer: "this",
+  },
+  {
+    title: "Using _______ statement is how you test for a specific condition.",
+    choices: ["selec", "if", "switch", "for"],
+    answer: "if",
+  },
+];
 
-// set timer
-
-var timerEl = document.querySelector("#time-available");
-var timeLeft = questions.length * 15;
+// timer set up 
+var timeEl = document.querySelector("#time-left");
+var secondsLeft = questions.length * 15;
 var timer;
 
-// Key Functions
+// functions
 
-function upSection(n) {
-    cards[openSection].classList.remove("active");
-    cards[n].classList.add("active");
-    openSection = n;
-};
-
-function nextSection() {
-    upSection(openSection + 1);
-    timerEl.textContent = timeLeft;
-
-
-    // start the timer
-
-    if (openSection === 1) {
-        setTime();
-    }
-
-    // All done section
-
-    if (openSection === 6) {
-        score.textContent = timeLeft;
-        // stop the timer
-        clearInterval(timer);
-    }
+function loadPage(n) {
+  card[displayedCard].classList.remove("active");
+  card[n].classList.add("active");
+  displayedCard = n;
 }
 
-// verification of answers
-function verifiAnswer(event) {
-    event.preventDefault()
+function loadNextPage() {
+  loadPage(displayedCard + 1);
+  timeEl.textContent = secondsLeft;
+  if (timeEl === 0) {
+    alert("working!");
+  } 
+  console.log(timeEl);
 
-    reviewDiv.classList.remove("off");
-    reviewDiv.classList.add("on");
+  // timer starts
+  if (displayedCard === 1) {
+    setTime();
+  }
 
-    // if correct show correct answer 
+  // all-done section
+  if (displayedCard === 6) {
+    //user's score
+    score.textContent = secondsLeft;
 
-    if (event.target.textContent ===
-        questions[openQuestion].answer) {
-        rwEl.textContent = "Correct!";
-    } // if wrong show "Wrong!"
-    else {
-        rwEl.textContent = "Wrong!";
+    // timer stops
+    clearInterval(timer);
+  }
+}
 
-        // time reduction
-        if (timeLeft > 10) {
-            timeLeft -= 10;
-            timerEl.textContent = timeLeft;
-        }
+// reviewing answers correctness
+function evaluateAnswer(event) {
+  event.preventDefault();
+
+  evaluateDiv.classList.remove("off");
+  evaluateDiv.classList.add("on");
+
+  // right answer message 
+  if (event.target.textContent === questions[displayedQuestion].answer) {
+    rightOrWrongEl.textContent = "Correct!";
+  } // wrong answer message
+  else {
+    rightOrWrongEl.textContent = "Wrong!";
+
+    // timper reduction for wrong answer
+    if (secondsLeft > 10) {
+      secondsLeft -= 10;
+      timeEl.textContent = secondsLeft;
     }
+  }
+  displayedQuestion++;
 
-    openQuestion++;
+  // remove evaluate div
+  setRightOrWrongTime();
+}
 
+// quiz timer 
+function setTime() {
+  timer = setInterval(function () {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft;
 
-    // remove review Div
-    rwEl();
+    if (secondsLeft === 0) {
+      clearInterval(timer);
+
+      // show out of time message
+      sendMessage();
+    }
+  }, 1000);
 }
 
 
-// timer for quiz
 
-function setTimer() {
-    timer = setInterval(function () {
-        timeLeft--;
-        timerEl.textContent = timeLeft;
-
-        if (timeLeft === 0) {
-            clearInverval(timer);
-            // show out of time section card
-            sendMessage();
-        }
-    }, 1000);
-};
-
-// show out of time note
-
+// show an out of time message
 function sendMessage() {
-    cards[openSection].classList.revove("active");
-    outTime.classList.remove("off");
-    outTime.classList.add("on");
+  card[displayedCard].classList.remove("active");
+  message.classList.remove("off");
+  message.classList.add("on");
 
-    // if user selects yes, return to start page
-    btnYes.addEventListener("click", function (event) {
-        event.preventDefault();
+  // yes click equal going to intro section
+  yesBtn.addEventListener("click", function (event) {
+    event.preventDefault();
 
+    loadPage(0);
+    message.classList.remove("on");
+    message.classList.add("off");
+    secondsLeft = questions.length * 15;
+  });
 
-        upSection(0);
-        outTime.classList.remove("on");
-        outTime.classList.add("off");
-        timeLeft = questions.length * 15;
+  // no click display good goodbye message
+  noBtn.addEventListener("click", function (event) {
+    event.preventDefault();
 
-
-    });
-
-    // if user selects no, show take care note
-    btnNo.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        seeYaMessage.classList.remove("off");
-        seeYaMessage.classList.add("on");
-        outTime.classList.remove("on");
-        outTime.classList.add("off");
-
-
-    });
+    goodbye.classList.remove("off");
+    goodbye.classList.add("on");
+    message.classList.remove("on");
+    message.classList.add("off");
+  });
 }
 
-// show the message "correct or wrong" show
-
+// show correct or wrong message after answer selection
 function setRightOrWrongTime() {
-    var time = setInterval(function () {
-        var second = 1;
-        second--;
+  var timer = setInterval(function () {
+    var second = 1;
+    second--;
 
-        if (second === 0) {
-            clearInterval(timer);
-            reviewDiv.classList.remove("on");
-            reviewDiv.classList.add("off");
-        }
-    }, 1000);
-}
-
-
-// higher score user array loop
-
-function renderUser() {
-
-    //clearing the elements for clear results each time
-    ulEl.innerHTML = " ";
-
-    //Showing a new value per highscore
-    for (var i = 0; i < theUser.length; i++) {
-        // creating a new object that pulls from array
-        var user = theUser[i];
-
-        // place the text content of the list element to the user's info
-
-        var li = document.createElement("li");
-
-        li.textContent = theUser.userId + "." + theUser.initials + "-" + theUser.score;
-
-
-        // add the list element to the unordered list
-
-        ulEl.appendChild(li);
-
+    if (second === 0) {
+      clearInterval(timer);
+      evaluateDiv.classList.remove("on");
+      evaluateDiv.classList.add("off");
     }
+  }, 1000);
 }
 
+// users array process to show highscore
+function renderUsers() {
+  // clear the list for a fresh start look (innerHTML: use to modify/replace HTML elements)
+  ulEl.innerHTML = "";
 
-// store users in local storage
+  // showing a new highscore
+  for (var i = 0; i < users.length; i++) {
+    // Create a new user object that pulls from the user array
+    var user = users[i];
 
-function useStorage() {
-    localStorage.setItem("theUser", JSON.stringify(theUser));
+    // using text content to show user's initials and score
+    var li = document.createElement("li");
+    li.textContent = user.userNum + ". " + user.initials + " - " + user.score;
+
+    // Append the element to the unordered list
+    ulEl.appendChild(li);
+  }
 }
 
+// local storage set up. (note:localstorage data is specific to the protocol of the doc.)
+function storeUsers() {
+  localStorage.setItem("users", JSON.stringify(users));
+}
 
 function init() {
-    // Get stored past highscores from local storage
-    // Parse the JSON string into an object
+  // ast highscores from local storage and parse the JSON string into an object
+  var storedUsers = JSON.parse(localStorage.getItem("users"));
 
-    var storedUsers = JSON.parse(localStorage.getItem("theUser"));
+  // If users, use users array for array
+  if (storedUsers !== null) {
+    users = storedUsers;
+  }
 
-    // If there are users in the local storage, set the users array to that array
-    if (storedUsers !== null) {
-        users = storedUsers;
-    }
-
-    renderUsers();
+  renderUsers();
 }
 
-// Iterate through all the choices buttons to add an "ON CLICK" event for them to
-// 1. load the next page
-// 2. evaluate if the answer is right or wrong
+// onclick commands
 for (var i = 0; i < choices.length; i++) {
-    choices[i].addEventListener("click", evaluateAnswer);
-    choices[i].addEventListener("click", loadNextPage);
+  choices[i].addEventListener("click", evaluateAnswer);
+  choices[i].addEventListener("click", loadNextPage);
 }
 
-// If "Submit" button is clicked,
-// load the highscores page
+// submit and highscore click button set up
 submitBtn.addEventListener("click", function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
+  // initials 
+  if (
+    formInput.value !== "null" &&
+    formInput.value !== "" &&
+    (formInput.value.length == 2 || formInput.value.length == 3)
+  ) {
+    loadNextPage();
+    formInput.value = formInput.value.toUpperCase();
+  } else {
+    error.classList.remove("off");
+    error.classList.add("on");
+  }
 
+  // object for users array
+  var user = {
+    userNum: userNum,
+    initials: formInput.value,
+    score: secondsLeft,
+  };
 
-    // Data validation on initials form
-    if (
-        initialsInput.value !== "null" &&
-        initialsInput.value !== "" &&
-        (initialsInput.value.length == 2 || initialsInput.value.length == 3)
-    ) {
-        loadNextPage();
-        initialsInput.value = initialsInpu.value.toUpperCase();
-    } else {
-        redo.classList.remove("off");
-        redo.classList.add("on");
-    }
+  // transfer highscore to users array
+  users.push(user);
 
-    // Create an object to store inside users array
-    var theUser = {
-        userId: userId,
-        initials: initialsInput.value,
-        score: timeLeft,
-    };
-
-
-    // Add new highscore
-    theUser.push(theUser);
-
-
-
-    renderUsers();
-    storeUsers();
+  renderUsers();
+  storeUsers();
 });
 
+// go back , reset go back click buttons commands
+backBtn.addEventListener("click", function (event) {
+  event.preventDefault();
 
-
-// If go-back button is clicked: show start page, reset values, raise the userIdby one
-btnReturn.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    upSection(0);
-    openQuestion = 0;
-    initialsInput.value = "";
-    timeLeft = questions.length * 15;
-    userId++;
+  loadPage(0);
+  displayedQuestion = 0;
+  formInput.value = "";
+  secondsLeft = questions.length * 15;
+  userNum++;
 });
 
+// clear high score, clear, reset on clic button commands
+clearBtn.addEventListener("click", function (event) {
+  event.preventDefault();
 
-// If clear-HS button is clicked: clear the list, reset number to 0, clear the local storage
-btnClear.addEventListener("click", function (event) {
-    event.preventDefault();
+  ulEl.innerHTML = "";
 
-    ulEl.innerHTML = "";
-
-    users = [];
-    localStorage.setItem("users", JSON.stringify(users));
-    userId = 0;
+  users = [];
+  localStorage.setItem("users", JSON.stringify(users));
+  userNum = 0;
 });
 
-
-// If view card, show highscore page
+// on click highscore section display
 highscores.addEventListener("click", function () {
-    upSection(7);
+  loadPage(7);
 
+  //  no users display userNum = 1
+  if (JSON.parse(localStorage.getItem("users")) === null) {
+    userNum = 1;
+  } // If users, userNum = the number of users
+  else {
+    userNum = JSON.parse(localStorage.getItem("users")).length;
+  }
 
-    // No user then display number one
-    if (JSON.parse(localStorage.getItem("users")) === null) {
-        userId = 1;
-    } // Displaying the number of users
-    else {
-        userId = JSON.parse(localStorage.getItem("users")).length;
-    }
-
-    // Stop Timer
-    clearInterval(timerEl);
+  // stop timer 
+  clearInterval(timer);
 });
 
-
-// Functions on Call 
-upSection(0);
-startBtn.addEventListener("click", nextSection);
+// calling function
+loadPage(0);
+startBtn.addEventListener("click", loadNextPage);
 init();
-
-
