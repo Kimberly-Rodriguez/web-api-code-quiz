@@ -11,9 +11,9 @@
 * [Acknowledgements](#acknowledgements)
 
 ## Description 
-To complete a multiple-choice questions and interactive coding challenges that put your coding skills to the test. This applications is under time restrictions so the user needs to complete all questioin within the time limit.
+To complete a multiple-choice questions and interactive coding challenges that put your coding skills to the test. This applications is under time restrictions so the user needs to complete all questions within the time limit.
 
-## Instalation
+## Installation
 For installation and deployment, please [click here](https://kimberly-rodriguez.github.io/web-api-code-quiz/). The GitHub link is [here](https://github.com/Kimberly-Rodriguez/web-api-code-quiz)
 
 ## Usage
